@@ -1,0 +1,13 @@
+PROC SQL;
+  CREATE TABLE WORK.query AS
+    SELECT Name , Sex , Age , Height FROM SASHELP.CLASS
+    WHERE (("Age"n =11 OR "Age"n =12) OR "Age"n =13) ORDER BY "Height"n ;
+  RUN;
+QUIT;
+
+PROC DATASETS NOLIST NODETAILS;
+  CONTENTS DATA=WORK.query OUT=WORK.details;
+  RUN;
+  
+PROC PRINT DATA=WORK.details;
+RUN;
